@@ -15,7 +15,7 @@ class SiteInfoSerializer(serializers.ModelSerializer):
     des = serializers.SerializerMethodField()
     skills = serializers.SerializerMethodField()
     services = serializers.SerializerMethodField()
-    projects = serializers.SerializerMethodField()
+    projects_detail = serializers.SerializerMethodField()
     
     def get_des(self, obj):
         return DesignationSerializer(models.Designation.objects.all(), many=True).data
@@ -26,7 +26,7 @@ class SiteInfoSerializer(serializers.ModelSerializer):
     def get_services(self, obj):
         return ServiceSectionSerializer(models.ServiceSection.objects.all(), many=True).data
     
-    def get_projects(self, obj):
+    def get_projects_detail(self, obj):
         return ProjectSerializer(models.Project.objects.all(), many=True, context={'request': self.context.get('request')}).data
 
 

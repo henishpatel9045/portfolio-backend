@@ -59,3 +59,5 @@ class ProjectAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "email", "date_created"]
     search_fields = ["name", "message", "email"]
+    readonly_fields = ["name", "message", "email"]
+    

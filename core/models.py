@@ -48,7 +48,7 @@ class SkillSection(models.Model):
         return self.title
     
     class Meta:
-        ordering = ['date_created']
+        ordering = ['-date_created']
         verbose_name_plural = "Skill Section"
         
     
@@ -78,7 +78,7 @@ class ServiceSection(models.Model):
         return self.title
     
     class Meta:
-        ordering = ['date_created'] 
+        ordering = ['-date_created'] 
         verbose_name_plural = "Services Section"   
         
 class Service(models.Model):
@@ -100,7 +100,7 @@ class Project(models.Model):
         return self.title
     
     class Meta:
-        ordering = ['date_created']
+        ordering = ['-date_created']
         verbose_name_plural = "Projects"    
     
     
@@ -114,5 +114,5 @@ class ContactMe(models.Model):
         return self.name
     
     class Meta:
-        ordering = ["date_created"]
+        ordering = ["-date_created"]
         verbose_name_plural = "Messages"

@@ -5,5 +5,6 @@ from . import views
 
 router = DefaultRouter()
 router.register("site", views.SiteInfoView, basename="SiteInfo ViewSet")
+router.register("message", views.ContactViewSet, basename="Contact Me Viewset")
 
 urlpatterns = router.urls

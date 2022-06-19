@@ -52,12 +52,10 @@ class ServiceSectionAdmin(admin.ModelAdmin):
 @admin.register(models.Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ["id", "title", "date_created", "last_updated"]
-    ordering = ["date_created"]
     search_fields = ["title"]
     
 
 @admin.register(models.ContactMe)
 class ContactAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "email", "date_created"]
-    ordering = ["date_created"]
     search_fields = ["name", "message", "email"]

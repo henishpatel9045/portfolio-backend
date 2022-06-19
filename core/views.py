@@ -11,3 +11,7 @@ class SiteInfoView(RetrieveModelMixin, ListModelMixin, GenericViewSet):
     def get_serializer_context(self):
         return {'request': self.request}
     
+class ContactViewSet(CreateModelMixin, GenericViewSet):
+    queryset = models.ContactMe.objects.all()
+    serializer_class = serializers.ContactMeSerializer
+    

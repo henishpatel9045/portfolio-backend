@@ -24,19 +24,28 @@ class SiteInfo(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return self.name
+    
     class Meta:
         verbose_name_plural = "Site Info"
+              
     
 
 class Designation(models.Model):
     post = models.CharField(max_length=150)
     site = models.ForeignKey(SiteInfo , on_delete=models.CASCADE)
     
+    def __str__(self):
+        return self.post
     
 class SkillSection(models.Model):
     title = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
     
     class Meta:
         ordering = ['date_created']
@@ -55,12 +64,18 @@ class Skill(models.Model):
         choices=PROFICIENCY_CHOICES,
         default="B"
     )
+    skill_section = models.ForeignKey(SkillSection, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return str(self.skill_section) + " - " + self.skill_name
     
 class ServiceSection(models.Model):
     title = models.CharField(max_length=200)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title
     
     class Meta:
         ordering = ['date_created'] 
@@ -70,7 +85,9 @@ class Service(models.Model):
     title = models.CharField(max_length=400)
     service_section = models.ForeignKey(ServiceSection, on_delete=models.CASCADE)
     
-    
+    def __str__(self):
+        return str(self.service_section)
+     
 class Project(models.Model):
     title = models.CharField(max_length=150)
     photo = models.ImageField(upload_to="projects")
@@ -78,6 +95,9 @@ class Project(models.Model):
     live_link = models.URLField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title
     
     class Meta:
         ordering = ['date_created']
@@ -88,4 +108,11 @@ class ContactMe(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField(null=True, blank=True)
     message = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ["date_created"]
+        verbose_name_plural = "Messages"
